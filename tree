@@ -25,12 +25,25 @@ node* Insert(node* root,int x){
     }
     return root;//always return main root of the whole tree
 }
+bool search(node* root,int x){
+    if(root==NULL) return false;
+    else if(root->data==x) return true;
+    else if(x<=root->data)  return search(root->left,x);
+    else return search(root->right,x);
+}
 int main() {
     node* root=NULL;
-    int x;
-    cout<<"Enter integer to insert"<<endl;
-    cin>>x;
-    root=Insert(root,x);
-    cout<<root->data;
+    int y;
+    root=Insert(root,2);
+    root=Insert(root,3);
+    root=Insert(root,4);
+    root=Insert(root,5);
+    cout<<"enter the number to search";
+    cin>>y;
+    if(search(root,y)==true){
+        cout<<"Found";
+    }
+    else
+    cout<<"Not found";
 	return 0;
 }
