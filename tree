@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+struct node{
+    int data;
+    node* left;
+    node* right;
+};
+node* newnode(int x){
+    node* temp=new node;
+    temp->data=x;
+    temp->left=NULL;
+    temp->right=NULL;
+    return temp;
+}
+node* Insert(node* root,int x){
+    node* temp=newnode(x);
+    if(root==NULL){
+        root=temp;
+    }
+    else if(x<=root->data){
+        root->left=Insert(root->left,x);
+    }
+    else{
+        root->right=Insert(root->right,x);
+    }
+    return root;//always return main root of the whole tree
+}
+int main() {
+    node* root=NULL;
+    int x;
+    cout<<"Enter integer to insert"<<endl;
+    cin>>x;
+    root=Insert(root,x);
+    cout<<root->data;
+	return 0;
+}
