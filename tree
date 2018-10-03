@@ -31,6 +31,25 @@ bool search(node* root,int x){
     else if(x<=root->data)  return search(root->left,x);
     else return search(root->right,x);
 }
+int min(node* root){
+	if(root==NULL){
+		cout<<"Empty Tree"<<endl;
+		return 35;
+	}
+	else if(root->left==NULL){
+		return root->data;
+	}
+	return min(root->left);
+}
+int height(node* root){//height of tree
+	int leftheight,rightheight;
+	if(root==NULL) return -1;//leaf has to be of zero height
+	leftheight=height(root->left);
+	cout<<"left height:"<<leftheight<<endl;
+	rightheight=height(root->right);
+	cout<<"right height:"<<rightheight<<endl;
+	return max(leftheight,rightheight)+1;
+}
 int main() {
     node* root=NULL;
     int y;
@@ -38,12 +57,16 @@ int main() {
     root=Insert(root,3);
     root=Insert(root,4);
     root=Insert(root,5);
-    cout<<"enter the number to search";
+    root=Insert(root,0);
+    root=Insert(root,1);
+    root=Insert(root,-1);
+    /*cout<<"enter the number to search";
     cin>>y;
     if(search(root,y)==true){
         cout<<"Found";
     }
     else
-    cout<<"Not found";
+    cout<<"Not found";*/
+    cout<<height(root);
 	return 0;
 }
